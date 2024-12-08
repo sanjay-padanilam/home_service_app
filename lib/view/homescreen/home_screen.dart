@@ -15,79 +15,49 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
-        body: CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-            child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              10,
-              (index) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: size.height / 4,
-                  width: size.width / 1,
-                  color: Colors.red,
-                ),
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          Container(
+            height: ismore ? 300 : 200,
+            width: double.infinity,
+            color: Colors.green,
+            child: GridView.builder(
+              itemCount: (ismore ? 11 : 8), // Ensure the button always fits
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
               ),
-            ),
-          ),
-        )),
-        SliverToBoxAdapter(
-          child: Text("Services"),
-        ),
-        SliverToBoxAdapter(
-          child: Column(
-            children: [
-              Container(
-                height: ismore ? 300 : 200,
-                width: double.infinity,
-                color: Colors.green,
-                child: GridView.builder(
-                  itemCount: ismore ? 11 : 8,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4),
-                  itemBuilder: (context, index) => Padding(
+              itemBuilder: (context, index) {
+                // Place the button in the last position
+                if (index == (ismore ? 10 : 7)) {
+                  return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      color: Colors.yellow,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          ismore = !ismore; // Toggle the grid state
+                        });
+                      },
+                      child: Text(ismore ? "Show Less" : "Show More"),
                     ),
+                  );
+                }
+
+                // Regular grid items
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    color: Colors.yellow,
                   ),
-                ),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    ismore = !ismore;
-                    setState(() {});
-                  },
-                  child: Text('seee more'))
-            ],
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Text("other Services"),
-        ),
-        SliverToBoxAdapter(
-            child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              10,
-              (index) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: size.height / 4,
-                  width: size.width / 1,
-                  color: Colors.red,
-                ),
-              ),
+                );
+              },
             ),
           ),
-        )),
-      ],
-    ));
+          SizedBox(height: 20),
+        ],
+      ),
+    );
   }
 }
