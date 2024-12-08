@@ -15,7 +15,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
-      appBar: AppBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.search),
+      ),
+      bottomNavigationBar: NavigationBar(destinations: [
+        NavigationDestination(icon: Icon(Icons.home), label: ''),
+        NavigationDestination(icon: Icon(Icons.home), label: ''),
+        NavigationDestination(icon: Icon(Icons.home), label: ''),
+        NavigationDestination(icon: Icon(Icons.home), label: ''),
+      ]),
+      appBar: AppBar(
+        title: Text('Homescreen'),
+      ),
       body: Column(
         children: [
           Container(
