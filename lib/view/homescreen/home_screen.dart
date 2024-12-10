@@ -4,6 +4,25 @@ import 'package:home_service_app/view/homescreen/widgets/Service_tile.dart';
 import 'package:home_service_app/view/homescreen/widgets/recent_work_tile.dart';
 
 class HomeScreen extends StatelessWidget {
+  final List<Map<String, dynamic>> services = [
+    {
+      'name': 'Electric',
+      'icon': Icons.electric_bolt,
+    },
+    {
+      'name': 'Plumbing',
+      'icon': Icons.plumbing,
+    },
+    {
+      'name': 'Cleaning',
+      'icon': Icons.cleaning_services,
+    },
+    {
+      'name': 'Repairing',
+      'icon': Icons.build,
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -26,45 +45,28 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Container(
-              height: 200,
+              height: 100,
               child: GridView.builder(
-                itemCount: 8,
+                itemCount: services.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4),
-                itemBuilder: (context, index) =>
-                    ServiceTile('Electric', Icons.electric_bolt),
+                itemBuilder: (context, index) => ServiceTile(
+                    services[index]["name"], services[index]["icon"]),
               )),
           // Top Deals Slider
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child:
-                //   Text(
-                //     'Top Deals',
-                //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                //   ),
-                // ),
-                // Container(
-                //   height: 200,
-                //   child: PageView(
-                //     children: [
-                //       DealCard('Electric Service Discount',
-                //           'Save 20% on Electric Service'),
-                //       DealCard('Plumbing Service Discount', 'Save 15% on Plumbing'),
-                //       DealCard('Cleaning Service Discount', 'Save 10% on Cleaning'),
-                //       DealCard('Gardening Service Discount', 'Save 25% on Gardening'),
-                //     ],
-                //   ),
-                CarouselSlider(
-                    items: List.generate(
-                      10,
-                      (index) => Container(
-                        height: size.height / 2,
-                        width: size.width * 2 / 2.4,
-                        color: Colors.black,
-                      ),
-                    ),
-                    options: CarouselOptions(
-                        autoPlay: true, enlargeCenterPage: true)),
+            child: CarouselSlider(
+                items: List.generate(
+                  10,
+                  (index) => Container(
+                    height: size.height / 2,
+                    width: size.width * 2 / 2.4,
+                    color: Colors.black,
+                  ),
+                ),
+                options:
+                    CarouselOptions(autoPlay: true, enlargeCenterPage: true)),
           ),
           // Recent Work Ratings Section
           Padding(
