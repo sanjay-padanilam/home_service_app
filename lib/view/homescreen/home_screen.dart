@@ -118,6 +118,8 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:home_service_app/view/homescreen/widgets/Service_tile.dart';
+import 'package:home_service_app/view/homescreen/widgets/recent_work_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -206,99 +208,6 @@ class HomeScreen extends StatelessWidget {
           RecentWorkTile('Robert Brown', 'Cleaner', 4.0),
           RecentWorkTile('Emily White', 'Gardener', 4.8),
         ],
-      ),
-    );
-  }
-}
-
-class ServiceTile extends StatelessWidget {
-  final String serviceName;
-  final IconData icon;
-
-  ServiceTile(this.serviceName, this.icon);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        elevation: 4,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 40),
-            SizedBox(height: 8),
-            Text(
-              serviceName,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class DealCard extends StatelessWidget {
-  final String title;
-  final String description;
-
-  DealCard(this.title, this.description);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(8),
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              description,
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class RecentWorkTile extends StatelessWidget {
-  final String workerName;
-  final String service;
-  final double rating;
-
-  RecentWorkTile(this.workerName, this.service, this.rating);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(8),
-      elevation: 4,
-      child: ListTile(
-        leading: CircleAvatar(
-          child: Icon(Icons.person),
-        ),
-        title: Text(workerName),
-        subtitle: Text(service),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(rating.toString()),
-            Icon(
-              Icons.star,
-              color: Colors.yellow,
-            ),
-          ],
-        ),
       ),
     );
   }
